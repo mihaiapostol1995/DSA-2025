@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-class CourseSchedule {
+class CourseScheduleII {
+
     public static void main(String[] args) {
         canFinish(4, new int[][]{
                 {0, 1}, {0, 2}, {0, 3}, {1, 2}, {1, 3}});
