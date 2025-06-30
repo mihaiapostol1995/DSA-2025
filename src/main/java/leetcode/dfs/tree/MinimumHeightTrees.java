@@ -9,7 +9,13 @@ import java.util.Set;
 
 class MinimumHeightTrees {
     public static void main(String[] args) {
-
+        MinimumHeightTrees minimumHeightTrees = new MinimumHeightTrees();
+        int[][] grid = {
+                {1, 0},
+                {1, 2},
+                {1, 3}
+        };
+        minimumHeightTrees.findMinHeightTrees(4, grid);
     }
 
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
@@ -28,8 +34,35 @@ class MinimumHeightTrees {
         Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < graph.size(); i++) {
             if (graph.get(i).size() == 1) {
+                // these are the leaves
                 queue.add(i);
             }
         }
+
+        int total = n;
+
+        while (total > 2) {
+            total = total - queue.size();
+
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                var cur = queue.poll();
+                var neighbours = graph.get(cur);
+                // single neighbour
+                var next = neighbours.iterator().next();
+                Set<Integer> integers = graph.get(next);
+                integers.remove(cur);
+                if (integers.size() == 1) {
+                    queue.add(next);
+                }
+            }
+        }
+
+        List<Integer> res = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            var cur = queue.poll();
+            res.add(cur);
+        }
+        return res;
     }
 }
