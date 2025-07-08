@@ -2,8 +2,12 @@ package leetcode.codility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 class FlightPathReconstruction {
     public static void main(String[] args) {
@@ -48,6 +52,38 @@ class FlightPathReconstruction {
             newList.remove(any.get());
             findFlightPath(any.get(), newList, result, size);
         }
+    }
+
+
+    public static String findPath(List<Map<String, String>> tickets) {
+        Map<String, String> flightMap = new HashMap<>();
+        Set<String> destinations = new HashSet<>();
+
+        // Build map and destination set
+        for (Map<String, String> ticket : tickets) {
+            String origin = ticket.get("origin");
+            String destination = ticket.get("destination");
+            flightMap.put(origin, destination);
+            destinations.add(destination);
+        }
+
+        // Find starting point (origin not in destinations)
+        String start = null;
+        for (String origin : flightMap.keySet()) {
+            if (!destinations.contains(origin)) {
+                start = origin;
+                break;
+            }
+        }
+
+        // Reconstruct path
+        List<String> path = new ArrayList<>();
+        while (start != null) {
+            path.add(start);
+            start = flightMap.get(start);
+        }
+
+        return String.join(" → ", path);
     }
 }
 

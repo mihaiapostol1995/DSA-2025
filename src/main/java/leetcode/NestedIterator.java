@@ -7,18 +7,52 @@ import java.util.List;
 
 // This is the interface that allows for creating nested lists.
 // You should not implement it, or speculate about its implementation
-interface NestedInteger {
+class NestedInteger {
+    private Integer value;
+    private List<NestedInteger> list;
 
-    // @return true if this NestedInteger holds a single integer, rather than a nested list.
-    public boolean isInteger();
+    public NestedInteger() {
+        list = new ArrayList<>();
+    }
 
-    // @return the single integer that this NestedInteger holds, if it holds a single integer
-    // Return null if this NestedInteger holds a nested list
-    public Integer getInteger();
+    public NestedInteger(int value) {
+        this.value = value;
+    }
 
-    // @return the nested list that this NestedInteger holds, if it holds a nested list
-    // Return empty list if this NestedInteger holds a single integer
-    public List<NestedInteger> getList();
+    public boolean isInteger() {
+        return value != null;
+    }
+
+    public Integer getInteger() {
+        return value;
+    }
+
+    public void add(NestedInteger ni) {
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        list.add(ni);
+    }
+
+    public List<NestedInteger> getList() {
+        return list;
+    }
+
+    @Override
+    public String toString() {
+        if (isInteger()) {
+            return String.valueOf(value);
+        }
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < list.size(); i++) {
+            sb.append(list.get(i).toString());
+            if (i < list.size() - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
 
 class NestedIterator implements Iterator<Integer> {
