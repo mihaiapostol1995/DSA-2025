@@ -27,7 +27,8 @@ class RemoveDuplicateLetters {
                 while (!result.isEmpty()
                         && c < result.peek()
                         && map.get(result.peek()) > 0) {
-                    seen.remove(result.pop());
+                    var popped = result.pop();
+                    seen.remove(popped);
                 }
                 result.push(c);
                 seen.add(c);

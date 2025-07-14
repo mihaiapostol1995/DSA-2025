@@ -24,6 +24,7 @@ class KThSmallestElementInBST {
         var left = kthSmallest(root.left, k);
         COUNT++;
         var middle = 0;
+        // in order traversal!
         if (k == COUNT) {
             middle = root.val;
         }
