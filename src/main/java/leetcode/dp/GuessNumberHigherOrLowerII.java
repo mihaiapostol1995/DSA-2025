@@ -2,6 +2,7 @@ package leetcode.dp;
 
 class GuessNumberHigherOrLowerII {
 
+    // minimax, hard
     public static void main(String[] args) {
         GuessNumberHigherOrLowerII g = new GuessNumberHigherOrLowerII();
         g.getMoneyAmount(4);
