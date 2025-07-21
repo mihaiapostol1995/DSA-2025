@@ -2,6 +2,7 @@ package leetcode.dfs;
 
 import java.util.Arrays;
 
+// GOOD, hard problem
 class MatchsticksToSquare {
     public static void main(String[] args) {
         var m = new MatchsticksToSquare();
@@ -31,7 +32,7 @@ class MatchsticksToSquare {
             return true;
         }
         if (current == sideLength) {
-            // reset current length
+            // reset current length, meaning the "current" and "start" variables
             return dfs(matchsticks, used, 0, 0, sideLength, k + 1);
         }
 
@@ -43,6 +44,7 @@ class MatchsticksToSquare {
                 }
                 used[i] = false;
             } else {
+                // optimization!
                 while (i + 1 < matchsticks.length
                         && matchsticks[i] == matchsticks[i + 1]) {
                     i++;
