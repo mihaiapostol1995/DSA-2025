@@ -2,6 +2,7 @@ package leetcode.dfs.tree;
 
 class DeleteNodeInABST {
 
+    // HARD
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
             return null;

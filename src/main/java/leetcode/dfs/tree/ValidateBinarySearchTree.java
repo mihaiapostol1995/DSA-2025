@@ -36,6 +36,7 @@ class ValidateBinarySearchTree {
             return false;
         }
 
+        // smart!
         return isValidBST(root.right, root.val, max)
                 && isValidBST(root.left, min, root.val);
     }
