@@ -11,14 +11,15 @@ public class NextGreaterElementII {
     }
 
     public int[] nextGreaterElements(int[] nums) {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>(); // stack of indexes
 
         int[] res = new int[nums.length];
         Arrays.fill(res, -1);
 
         for (int i = 0; i < nums.length * 2; i++) {
             int j = i % nums.length;
-            while (!stack.isEmpty() && nums[stack.peek()] < nums[j]) {
+            while (!stack.isEmpty()
+                    && nums[stack.peek()] < nums[j]) {
                 res[stack.pop()] = nums[j];
             }
 
