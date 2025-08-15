@@ -1,5 +1,7 @@
 package leetcode.dp;
 
+
+// GOOD problem!
 public class PredictTheWinner {
     public static void main(String[] args) {
         var p = new PredictTheWinner();
@@ -12,6 +14,7 @@ public class PredictTheWinner {
        return helper(nums, 0, nums.length - 1) > 0;
     }
 
+    // first do the recursive solution
     public int helper(int[] nums, int left, int right) {
         if (left == right) {
             return nums[left];
@@ -19,6 +22,7 @@ public class PredictTheWinner {
         return Math.max(nums[left] - helper(nums, left + 1, right),
                 nums[right] - helper(nums, left, right - 1));
     }
+
     // this array stores the DIFFERENCES
     public boolean predictTheWinner(int[] arr) {
         int[][] dp = new int[arr.length][arr.length];

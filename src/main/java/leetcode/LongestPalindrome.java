@@ -12,6 +12,7 @@ class LongestPalindrome {
         }
         String longestPalindrome = s.charAt(0) + "";
         for (int i = 1; i < s.length(); i++) {
+
             int j = 1;
             // branch out
             while (i - j >= 0 && i + j < s.length()) {
@@ -42,5 +43,36 @@ class LongestPalindrome {
             }
         }
         return longestPalindrome;
+    }
+
+
+    // much easier:
+    private static String longestPalindromeFast(String s) {
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+
+        int start = 0, maxLength = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandAroundCenter(s, i, i); // Odd-length palindrome
+            int len2 = expandAroundCenter(s, i, i + 1); // Even-length palindrome
+            int len = Math.max(len1, len2);
+
+            if (len > maxLength) {
+                maxLength = len;
+                start = i - (len - 1) / 2;
+            }
+        }
+
+        return s.substring(start, start + maxLength);
+    }
+
+    private static int expandAroundCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
     }
 }

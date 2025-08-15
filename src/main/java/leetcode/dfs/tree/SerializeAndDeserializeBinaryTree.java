@@ -3,12 +3,13 @@ package leetcode.dfs.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class SerializeAndDeserializeBST {
+// didn't know, revisit
+class SerializeAndDeserializeBinaryTree {
 
     public static void main(String[] args) {
-        var c = new Codec();
-        String serialize = c.serialize(buildTree());
-        c.deserialize(serialize);
+        var s = new SerializeAndDeserializeBinaryTree();
+        String serialize = s.serialize(buildTree());
+        s.deserialize(serialize);
     }
 
     static TreeNode buildTree() {
@@ -19,12 +20,7 @@ class SerializeAndDeserializeBST {
         root.right.right = new TreeNode(5);
         return root;
     }
-}
 
-// didn't know, revisit
-class Codec {
-
-    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         serializeBst(root, sb);
@@ -34,6 +30,7 @@ class Codec {
     // pre order traversal so that root is the first one
     private void serializeBst(TreeNode root, StringBuilder sb) {
         if (root == null) {
+            sb.append("null").append("#");
             return;
         }
         sb.append(root.val).append("#");
@@ -41,31 +38,32 @@ class Codec {
         serializeBst(root.right, sb);
     }
 
-    // Decodes your encoded data to tree.
-    // still preorder traversal! but this achieves the best BALANCE!
-    // how to remember: deserialization starts with ROOT
     public TreeNode deserialize(String data) {
+        if (data.isEmpty()) {
+            return null;
+        }
         Queue<TreeNode> queue = new LinkedList<>();
         for (var s: data.split("#")) {
-            queue.offer(new TreeNode(Integer.parseInt(s)));
+            if (s.isEmpty()) {
+                continue;
+            } else if (s.equals("null")) {
+                queue.offer(null);
+            } else {
+                queue.offer(new TreeNode(Integer.parseInt(s)));
+            }
         }
-        return build(queue, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return build(queue);
     }
 
-    TreeNode build(Queue<TreeNode> queue, int min, int max) {
-        if (queue.isEmpty()) {
-            return null;
-        }
-        var peek = queue.peek();
-        ///  i will forget this...
-        if (peek.val < min || peek.val > max ) {
+    TreeNode build(Queue<TreeNode> queue) {
+        var polled = queue.poll();
+        if (polled == null) {
             return null;
         }
 
-        queue.poll();
-        peek.left = build(queue, min, peek.val);
-        peek.right = build(queue, peek.val, max);
+        polled.left = build(queue);
+        polled.right = build(queue);
 
-        return peek;
+        return polled;
     }
 }

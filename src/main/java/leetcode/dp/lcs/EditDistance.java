@@ -1,4 +1,4 @@
-package leetcode.dp;
+package leetcode.dp.lcs;
 
 class EditDistance {
     public int minDistance(String word1, String word2) {
