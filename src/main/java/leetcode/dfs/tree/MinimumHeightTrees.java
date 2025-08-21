@@ -48,10 +48,11 @@ class MinimumHeightTrees {
             for (int i = 0; i < size; i++) {
                 var cur = queue.poll();
                 var neighbours = graph.get(cur);
-                // single neighbour
+                // single neighbour, this is why we call just once next
                 var next = neighbours.iterator().next();
                 Set<Integer> integers = graph.get(next);
                 integers.remove(cur);
+                // single neighbour
                 if (integers.size() == 1) {
                     queue.add(next);
                 }

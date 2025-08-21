@@ -3,7 +3,9 @@ package leetcode;
 class ContainerWithMostWater {
 
     public static void main(String[] args) {
-        System.out.println(maxAreaFaster(new int[]{1,8,6,2,5,4,8,3,7}));
+        int[] ints = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        int[] ints2 = {1, 100, 1, 100, 1};
+        System.out.println(maxAreaFaster(ints2));
     }
 
     public static int maxArea(int[] height) {
@@ -23,16 +25,26 @@ class ContainerWithMostWater {
     public static int maxAreaFaster(int[] height) {
         int maxArea = 0;
         int left = 0;
-        int right = height.length - 1;
 
-        while (left < right) {
+//        while (left < right) {
+//            int area = Math.min(height[left], height[right]) * (right - left);
+//            maxArea = Math.max(maxArea, area);
+//
+//            if (height[left] < height[right]) {
+//                left++;
+//            } else {
+//                right--;
+//            }
+//        }
+
+        for (int right = 0; right < height.length;) {
             int area = Math.min(height[left], height[right]) * (right - left);
             maxArea = Math.max(maxArea, area);
 
             if (height[left] < height[right]) {
                 left++;
             } else {
-                right--;
+                right++;
             }
         }
 

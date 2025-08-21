@@ -19,7 +19,7 @@ public class NextGreaterElementII {
         for (int i = 0; i < nums.length * 2; i++) {
             int j = i % nums.length;
             while (!stack.isEmpty()
-                    && nums[stack.peek()] < nums[j]) {
+                    && nums[j] > nums[stack.peek()]) {
                 res[stack.pop()] = nums[j];
             }
 

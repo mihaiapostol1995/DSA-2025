@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.HashSet;
 
-class LengthOfLongestSubstring {
+class LengthOfLongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstring("dvdf"));
     }

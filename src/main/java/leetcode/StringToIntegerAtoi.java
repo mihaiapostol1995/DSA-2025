@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.Map;
 
-class Atoi {
+class StringToIntegerAtoi {
     public static void main(String[] args) {
         System.out.println(myAtoi("-1010023630o4"));
     }
