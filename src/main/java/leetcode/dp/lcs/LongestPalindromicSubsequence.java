@@ -18,14 +18,14 @@ class LongestPalindromicSubsequence {
         }
 
         for (int len = 1; len < s.length(); len++) {
-            for (int i = 0; i < s.length() - len; i++) {
-                int j = i + len;
+            for (int left = 0; left < s.length() - len; left++) {
+                int right = left + len;
                 // start with 0, 1
-                if (s.charAt(i) == s.charAt(j)) {
-                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                if (s.charAt(left) == s.charAt(right)) {
+                    dp[left][right] = dp[left + 1][right - 1] + 2;
                 } else {
-                    dp[i][j] = Math.max(dp[i][j - 1],
-                            dp[i + 1][j]); // since palindromes can be both "aaa" and "aa"
+                    dp[left][right] = Math.max(dp[left][right - 1],
+                            dp[left + 1][right]); // since palindromes can be both "aaa" and "aa"
                 }
             }
         }

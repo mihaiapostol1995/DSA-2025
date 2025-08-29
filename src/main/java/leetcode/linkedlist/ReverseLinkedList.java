@@ -14,7 +14,8 @@ class ReverseLinkedList {
         var curr = head;
 
         while (curr != null) {
-            var next = curr.next;
+            var next = curr.next; // save it
+
             curr.next = prev;
             prev = curr;
             curr = next;

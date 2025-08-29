@@ -35,8 +35,6 @@ class RemoveDuplicatesFromSortedList {
                 cur = cur.next;
                 prev.next = cur;
             } else {
-                prev.next = cur;
-
                 prev = cur;
                 cur = cur.next;
             }

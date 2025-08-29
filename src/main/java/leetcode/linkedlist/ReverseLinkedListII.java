@@ -3,7 +3,7 @@ package leetcode.linkedlist;
 class ReverseLinkedListII {
 
     public static void main(String[] args) {
-        int[] values = {3, 5};
+        int[] values = {1, 2 ,3 ,4};
         ListNode dummy = new ListNode(0);
         ListNode current = dummy;
 
@@ -29,7 +29,7 @@ class ReverseLinkedListII {
         for (int i = 1; i < left; i++) {
             beforeRange = beforeRange.next;
         }
-
+        // PREV is the most important actor!
         ListNode prev = null;
         var curr = beforeRange.next;
         for (int i = left; i <= right; i++) {
@@ -39,8 +39,8 @@ class ReverseLinkedListII {
             curr = next;
         }
 
-        beforeRange.next.next = curr;
-        beforeRange.next = prev;
+        beforeRange.next.next = curr; // last
+        beforeRange.next = prev; // first
 
         return dummy.next;
     }

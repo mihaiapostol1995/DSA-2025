@@ -7,10 +7,21 @@ class SerializeAndDeserializeBST {
 
     public static void main(String[] args) {
         var c = new Codec();
-        String serialize = c.serialize(buildTree());
-        c.deserialize(serialize);
+//        String serialize = c.serialize(buildTree());
+//        TreeNode deserialize = c.deserialize(serialize);
+//        preoder(deserialize);
+
+        int[] values = {1, 2, 3, 4, 5};
+        TreeNode root = buildBalanced(values, 0, values.length - 1);
+        inorder(root);
+        System.out.println();
+
+        String serialize = c.serialize(root);
+        TreeNode deserialize = c.deserialize(serialize);
+        inorder(deserialize);
     }
 
+    // unbalanced
     static TreeNode buildTree() {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -18,6 +29,22 @@ class SerializeAndDeserializeBST {
         root.right.left = new TreeNode(4);
         root.right.right = new TreeNode(5);
         return root;
+    }
+
+    static TreeNode buildBalanced(int[] nums, int left, int right) {
+        if (left > right) return null;
+        int mid = (left + right) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = buildBalanced(nums, left, mid - 1);
+        node.right = buildBalanced(nums, mid + 1, right);
+        return node;
+    }
+
+    static void inorder(TreeNode root) {
+        if (root == null) return;
+        inorder(root.left);
+        System.out.print(root.val + " ");
+        inorder(root.right);
     }
 }
 

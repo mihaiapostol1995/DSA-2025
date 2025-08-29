@@ -19,6 +19,7 @@ public class RateLimiter {
             }
 
             // Check if more than 60 requests occurred within last 60 seconds
+            // i for boundary check
             if (i >= 60 && requestTime[i] - requestTime[i - 60] < 60) {
                 dropped++;
             }
